@@ -20,6 +20,26 @@ body, html {
 .w3-myfont {
   font-family: 'Pacifico', cursive;
 }
+ .card{
+     text-align: center;
+     width:320px;
+     height:320px;
+     padding:10px;
+     margin:10px;
+     display:inline-block;
+     border-radius:10px;
+     box-shadow:grey 5px 5px 5px;
+     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TreesInTheFog.jpg/1200px-TreesInTheFog.jpg");
+     -webkit-transition:width .5s;
+     transition:width .5s;
+     overflow-y: scroll;
+     font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+                   
+  }
+ .card:hover{
+     width:350px;
+     background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC")
+  }
 
 </style>
 <body onload="getData()">
@@ -64,6 +84,19 @@ body, html {
 </div>
 
 <!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+           <script type = "text/template" id="template">
+               <div class="card">
+                   <h1> {{Title}} </h1>
+                   <p>1) {{Director}} </p>
+                   <p>2) {{Description}} </p>
+                   <p>3) {{Rotten Tomatoes}} </p>
+                   <p>4) {{Genre}} </p>
+                   <input type = "text" id="{{id}}" placeholder="Enter Choice">
+               </div>
+           </script>
+           <script>
 <script>
 // Tabbed Menu
 function openMenu(evt, menuName) {
