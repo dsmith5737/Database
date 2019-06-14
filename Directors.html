@@ -20,6 +20,9 @@ body, html {
 .w3-myfont {
   font-family: 'Pacifico', cursive;
 }
+  .card{
+    
+  }
 
 </style>
 <body>
@@ -80,6 +83,16 @@ function openMenu(evt, menuName) {
 }
 document.getElementById("myLink").click();
 </script>
+       <script>
+         var data;
+            function getData(){
+                $.get("http://localhost:8500/director", function(result){
+                    //data = JSON.parse(result);
+					data = result
+                    //document.write(data);
+                })
+			}
+		</script>
 
 </body>
 </html>
