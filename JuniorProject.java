@@ -15,10 +15,14 @@ public class JuniorProject{
         Database  db =  new  Database("jdbc:sqlite:Rubydes.db" ); 
 		
 
-		String query = "SELECT * FROM Rubydes";
+		String query = "SELECT * FROM Movies";
+		String result = db.selectData(query);
+		
+		String query = "SELECT * FROM Directors";
 		String result = db.selectData(query);
 		
 		server.createContext("/movies", new RouteHandler(result));
+		server.createContext("/directors", new RouteHandler(result));
         server.start(); 
 		
 		System.out.println("Server started at port " + port);
