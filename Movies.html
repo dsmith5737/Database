@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Movies</title>
+<title>About</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,80 +11,66 @@ body, html {
   height: 100%;
 }
 
-/*.bgimg {
+.bgimg {
   background-position: center;
   background-size: cover;
   background-image: url("her.jpg");
   min-height: 100%;
 }
-*/
 .w3-myfont {
   font-family: 'Pacifico', cursive;
 }
 .card{
-text-align: center;
-width:500px;
-height:500px;
-padding:10px;
-margin:10px;
-display:inline-block;
-border-radius:10px;
-box-shadow:grey 5px 5px 5px;
-background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TreesInTheFog.jpg/1200px-TreesInTheFog.jpg");
-
+    text-align: center;
+     width:320px;
+     height:320px;
+     padding:10px;
+     margin:10px;
+     display:inline-block;
+     border-radius:10px;
+     box-shadow:grey 5px 5px 5px;
+     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TreesInTheFog.jpg/1200px-TreesInTheFog.jpg");     
 overflow-y: scroll;
-font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-                   
-  }
-
-</style>
-  <script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
-  <script type = "text/template" id="template">
-        <div class="card">
-        <h1> {{Title}} </h1>
-        <p> {{Director}} </p>
-        <p> {{Year}} </p>
-        <p> {{Writers}} </p>
-        <p> {{Trailer}} </p>
-        </div>
-          </script>
-  
-<script>
-// Tabbed Menu
-function openMenu(evt, menuName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("menu");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
-  }
-  document.getElementById(menuName).style.display = "block";
-  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+     font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
-</script>
->-->
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous">
-        </script>
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+           <script type = "text/template" id="template">
+               <div class="card">
+                   <h1> {{Title}} </h1>
+                   <p> {{Director}} </p>
+                   <p> {{Description}} </p>
+                   <p> {{Rotten Tomatoes}} </p>
+                   <p> {{Genre}} </p>
+			  <p>{{Awards}}</p>
+                   <p>{{Year}}</p>
+                   <p>{{Writers}}</p>
+		        
+               </div>
+           </script>
+
         <script>
          var data;
             function getData(){
                 $.get("http://localhost:8500/movies", function(result){
-                    data = JSON.parse(result);
-					data = result
-                    document.write(data);
+                   // data = JSON.parse(result);
+			   data = result;
+                    //document.write(data);
+				displayMovies();
                 })
 			}
+   function displayMovies(){
+            var build = "";
+            var output = document.getElementById("output"); 
+            var template = document.getElementById("template").innerHTML; 
+            
+            for(var i = 0; i<data.length; i++){
+                build+= Mustache.render(template,data[i]); 
+            }
+            output.innerHTML= build; 
+         }
 		</script>
 
 <body onload="getData()">
@@ -127,6 +113,27 @@ function openMenu(evt, menuName) {
 </div>
 
 </div>
+
+<!--
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>-->   
+                              }
+<div id = "output"></div>		
 </body>
 </html>
 
